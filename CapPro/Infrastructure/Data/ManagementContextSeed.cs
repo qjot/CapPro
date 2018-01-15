@@ -27,7 +27,7 @@ namespace Infrastructure.Data {
             }
         }
 
-        private static IEnumerable<Customer> GetPreconfiguredListOfCustomers() {
+         static IEnumerable<Customer> GetPreconfiguredListOfCustomers() {
             return new List<Customer>() {
                 new Customer() {
                     name = "Michał",

@@ -12,16 +12,13 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
   </ItemGroup>
- <ItemGroup>
-      
-  <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
- 
+ <ItemGroup>      
+  <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" /> 
+  <ProjectReference Include="..\ApplicationCore\ApplicationCore.csproj" />
  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\Customer\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
