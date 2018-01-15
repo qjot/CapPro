@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Infrastructure.Data;
 
-namespace CapPro.Web
-{
+namespace CapPro.Web {
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -22,6 +18,15 @@ namespace CapPro.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<ManagementContext>(options => {
+                try {
+                   // options.UseInMemoryDatabase("Management");
+                    //c.UseSqlServer(Configuration.GetConnectionString("CatalogConnection"));
+                }
+                catch (System.Exception ex) {
+                    var message = ex.Message;
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
