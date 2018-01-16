@@ -33,3 +33,15 @@
         display: none;
     }
 }
+body {
+}
+
+.homePageText {
+    color: black;
+}
+
+.carousel-caption {
+    position: relative;
+    left: auto;
+    right: auto;
+}

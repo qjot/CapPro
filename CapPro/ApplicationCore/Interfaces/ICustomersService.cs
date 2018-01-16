@@ -11,7 +11,7 @@ namespace ApplicationCore.Interfaces
         //Task TransferBasketAsync(string anonymousId, string userName);
         Task<List<Customer>> GetAllCustomers();
         Task<Customer> GetCustomer(int customerID);
-        Task CreateCustomerAsync(string name, string surname, string telephoneNumber, string address);
+        Task CreateCustomerAsync(Customer customer);
         Task ModifyCustomer(int customerID, string name, string surname, string telephoneNumber, string address);
         Task DeleteCustomerAsync(int customerID);
     }

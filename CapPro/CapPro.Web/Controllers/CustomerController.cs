@@ -32,5 +32,21 @@ namespace CapPro.Web.Controllers
                 return new CustomersViewModel() { customerList = customerList };
             
             }
+        [HttpPost]
+        public JsonResult Add(Customer customer) {
+
+            if (ModelState.IsValid) {
+                _customersService.CreateCustomerAsync(customer);
+                return Json(customer);
+            }
+            return Json();
+        }
+
+        //public JsonResult Update(Employee emp) {
+        //    return Json(empDB.Update(emp), JsonRequestBehavior.AllowGet);
+        //}
+        //public JsonResult Delete(int ID) {
+        //    return Json(empDB.Delete(ID), JsonRequestBehavior.AllowGet);
+        //}
     }
 }

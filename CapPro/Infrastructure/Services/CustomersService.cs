@@ -26,14 +26,8 @@ namespace Infrastructure.Services {
             return _customerRepository.GetByIdAsync(customerID);
         }
 
-        public async Task CreateCustomerAsync(string clientName, string clientSurname, string clientTelephoneNumber, string clientAddress) {
-            var newCustomer = new Customer() {
-                name = clientName,
-                surname = clientSurname,
-                telephoneNumber = clientTelephoneNumber,
-                address = clientAddress
-            };
-            await _customerRepository.AddAsync(newCustomer);
+        public async Task CreateCustomerAsync(Customer customer) {
+            await _customerRepository.AddAsync(customer);
         }
         public async Task ModifyCustomer(int customerID, string name, string surname, string telephoneNumber, string address) {
             var customer = await _customerRepository.GetByIdAsync(customerID);
