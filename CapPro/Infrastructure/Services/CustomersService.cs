@@ -37,9 +37,23 @@ namespace Infrastructure.Services {
             customer.address = address;
             await _customerRepository.UpdateAsync(customer);
         }
-        public async Task DeleteCustomerAsync(int customerID) {
-            var customer = await _customerRepository.GetByIdAsync(customerID);
-            await _customerRepository.DeleteAsync(customer);
+        public async Task ModifyCustomer(Customer updatedCustomer) {
+            var customerToUpdate = _customerRepository.GetByIdAsync(updatedCustomer.ID).Result;
+            if(customerToUpdate != null) {            
+            customerToUpdate.name = updatedCustomer.name;
+            customerToUpdate.surname = updatedCustomer.surname;
+            customerToUpdate.telephoneNumber = updatedCustomer.telephoneNumber;
+            customerToUpdate.address = updatedCustomer.address;
+            await _customerRepository.UpdateAsync(customerToUpdate);
+            }
+        }
+        public async Task<bool> DeleteCustomerAsync(int customerID) {
+            var customer =  _customerRepository.GetByIdAsync(customerID).Result;
+            if(customer != null) {
+                await _customerRepository.DeleteAsync(customer);
+                return true;
+            }
+            return false;
         }
     }
 }

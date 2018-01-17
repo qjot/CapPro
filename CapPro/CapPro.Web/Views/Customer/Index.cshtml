@@ -9,49 +9,29 @@
 <p>
     <button type="button" class="btn btn-primary" id="addCustomerBtn" data-toggle="modal" data-target="#customerModal">Add New Customer</button>
 </p>
-<table class="table">
+<table class="table table-bordered table-hover">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.customerList.FirstOrDefault().name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.customerList.FirstOrDefault().surname)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.customerList.FirstOrDefault().telephoneNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.customerList.FirstOrDefault().address)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.customerList.FirstOrDefault().ID)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customer.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customer.surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customer.address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customer.telephoneNumber)
+            </th>
+
+            <th hidden>
+                @Html.DisplayNameFor(model => model.customer.ID)
+            </th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model.customerList) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.surname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.telephoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.address)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
+    <tbody class="tbody"></tbody>
 </table>
 
 <div class="modal fade" id="customerModal" tabindex="-1" role="dialog" aria-labelledby="customerModalLabel" aria-hidden="true">
@@ -61,32 +41,41 @@
                 <button type="button" class="close" data-dismiss="modal">×</button>
                 <h4 class="modal-title" id="customerModalLabel">Add Customer</h4>
             </div>
-            <div class="modal-body">
-                <form>
-                   
+            <form id="form">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div asp-validation-summary="All"></div>
+
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input class="form-control" id="name" name="name" type="text" placeholder="Name">                    
+                        @Html.LabelFor(o => o.customer.name)
+                        @Html.TextBoxFor(o => o.customer.name, new { @class = "form-control" , @id = "Name"})  
+
                     </div>
                     <div class="form-group">
-                        <label for="surname">Surname</label>
-                        <input type="text" class="form-control" id="surname" name="surname" placeholder="Surname" />
+                        @Html.LabelFor(o => o.customer.surname)
+                        @Html.TextBoxFor(o => o.customer.surname, new { @class = "form-control", @id = "Surname" }) 
                     </div>
                     <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="id" placeholder="Address" />
+                        @Html.LabelFor(o => o.customer.address)
+                        @Html.TextBoxFor(o => o.customer.address, new { @class = "form-control", @id = "Address" }) 
                     </div>
                     <div class="form-group">
-                        <label for="telephoneNumber">Telephone Number</label>
-                        <input type="text" class="form-control" id="TelephoneNumber"  name="telephoneNumber" placeholder="Telephone Number" />
+                        @Html.LabelFor(o => o.customer.telephoneNumber)
+                        @Html.TextBoxFor(o => o.customer.telephoneNumber, new { @class = "form-control", @id = "TelephoneNumber" }) 
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnAdd">Add</button>
-                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+                    <div class="form-group" hidden>
+                        @Html.LabelFor(o => o.customer.ID)
+                        @Html.TextBoxFor(o => o.customer.ID, new { @class = "form-control", @id = "CustomerID" }) 
+                    </div>
+
+                </div>
+            </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnAdd">Add</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+           
         </div>
     </div>
 </div>

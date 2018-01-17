@@ -8,6 +8,6 @@ namespace CapPro.Web.Models
 {
     public class CustomersViewModel
     {
-        public List<Customer> customerList { get; set; }
+        public Customer customer { get; set; }
     }
 }

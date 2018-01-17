@@ -13,6 +13,7 @@ namespace ApplicationCore.Interfaces
         Task<Customer> GetCustomer(int customerID);
         Task CreateCustomerAsync(Customer customer);
         Task ModifyCustomer(int customerID, string name, string surname, string telephoneNumber, string address);
-        Task DeleteCustomerAsync(int customerID);
+        Task ModifyCustomer(Customer customer);
+        Task<bool>DeleteCustomerAsync(int customerID);
     }
 }

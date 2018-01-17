@@ -11,6 +11,9 @@
 }
 
 /* Carousel */
+.carousel {
+    max-height: 600px;
+}
 .carousel-caption p {
     font-size: 20px;
     line-height: 1.4;
@@ -19,8 +22,24 @@
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
+   
 }
-
+div.c-wrapper {
+    width: 80%; /* for example */
+    margin: auto;
+}
+.carousel {
+    max-height:300px;
+}
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 100%; /* use this, or not */
+    margin: auto;
+    max-height: 170px;
+}
+.carousel-indicators{
+    color:black;
+}
 /* QR code generator */
 #qrCode {
     margin: 15px;
@@ -36,7 +55,7 @@
 body {
 }
 
-.homePageText {
+.carouselText {
     color: black;
 }
 

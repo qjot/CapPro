@@ -22,31 +22,40 @@ namespace CapPro.Web.Controllers
         }
         [HttpGet]
         public async Task<IActionResult> Index() {
-            var customerListModel = await GetCustomerListViewModelAsync();
-
-            return View(customerListModel);
+            var customerViewModel = new CustomersViewModel() { customer = new Customer() };
+            return View(customerViewModel);
         }
 
-        private async Task<CustomersViewModel> GetCustomerListViewModelAsync() {
-                var customerList = await _customersService.GetAllCustomers();
-                return new CustomersViewModel() { customerList = customerList };
-            
-            }
-        [HttpPost]
-        public JsonResult Add(Customer customer) {
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCustomer(int id) {
+            var customer = await _customersService.GetCustomer(id);
+            return Json(customer);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetCustomers() {
+            var customerList = await _customersService.GetAllCustomers();
+            return Json(customerList);
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> Update([FromBody]Customer customer) {
+            await _customersService.ModifyCustomer(customer);
+            return Json(customer);
+        }
+
+        [HttpPost]
+        public IActionResult Add([FromBody] Customer customer) {
             if (ModelState.IsValid) {
                 _customersService.CreateCustomerAsync(customer);
                 return Json(customer);
             }
-            return Json();
+                return Json("Model is not valid");
         }
 
-        //public JsonResult Update(Employee emp) {
-        //    return Json(empDB.Update(emp), JsonRequestBehavior.AllowGet);
-        //}
-        //public JsonResult Delete(int ID) {
-        //    return Json(empDB.Delete(ID), JsonRequestBehavior.AllowGet);
-        //}
+        [HttpPost("{id}")]
+        public async Task<IActionResult> Delete(int id) {
+            var deleteStatus = await _customersService.DeleteCustomerAsync(id);
+            return Json(deleteStatus);
+        }
     }
 }
